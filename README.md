@@ -16,6 +16,7 @@
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。
 
 github:https://github.com/hashicorp/nomad
+
 offical website:https://www.nomadproject.io/
 
 2021-11-02 [[翻译]Nomad 体系介绍](https://github.com/0xff-zero/blog/blob/master/tech/nomad/Nomad%20%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.md)

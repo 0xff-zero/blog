@@ -8,6 +8,10 @@
 
 ## 管理
 
+团队融入
+
+招聘CASE - 入职一个月后的离职
+
 
 
 ## 技术
@@ -22,6 +26,11 @@ offical website:https://www.nomadproject.io/
 2021-11-02 [[翻译]Nomad 体系介绍](https://github.com/0xff-zero/blog/blob/master/tech/nomad/Nomad%20%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.md)
 
 ### kubernetes
+
+体系介绍 - 概况
+体系介绍 - ApiServer
+
+Operator 开发
 
 
 

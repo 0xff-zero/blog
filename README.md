@@ -12,6 +12,8 @@
 
 ## 技术
 
+### Nomad
+[Nomad 体系介绍](https://github.com/0xff-zero/blog/blob/master/tech/nomad/Nomad%20%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.md)
 
 
 ### 环境

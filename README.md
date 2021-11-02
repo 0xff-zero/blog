@@ -13,7 +13,8 @@
 ## 技术
 
 ### Nomad
-一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序
+一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。
+
 github:https://github.com/hashicorp/nomad
 offical website:https://www.nomadproject.io/
 

@@ -4,7 +4,7 @@
 
 ## 思获
 
-隔离和联通
+2021-11-03 [隔离和联通](https://github.com/0xff-zero/blog/blob/master/reflection/%E9%9A%94%E7%A6%BB%E5%92%8C%E8%81%94%E9%80%9A.md)
 
 开发过程中的锁
 

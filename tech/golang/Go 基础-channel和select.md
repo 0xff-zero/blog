@@ -1,4 +1,4 @@
-# Go 基础
+# Go 基础-channel和select
 
 展示Go的基本使用
 

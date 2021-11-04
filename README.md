@@ -39,7 +39,11 @@ ABTest 在场景中的作用
 
 ## 协议
 
+开发规范
 
+https://en.wikipedia.org/wiki/SOLID
+
+https://en.wikipedia.org/wiki/KISS_principle
 
 
 

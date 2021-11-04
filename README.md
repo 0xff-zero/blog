@@ -77,7 +77,7 @@ java中的锁
 
 迷之 context
 
- 
+ 2021-07-04 [Go 基础 - channel 和 select](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%9F%BA%E7%A1%80-channel%E5%92%8Cselect.md)
 
 ### Nomad
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。

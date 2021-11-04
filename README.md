@@ -39,11 +39,7 @@ ABTest 在场景中的作用
 
 ## 协议
 
-开发规范
 
-https://en.wikipedia.org/wiki/SOLID
-
-https://en.wikipedia.org/wiki/KISS_principle
 
 
 
@@ -63,11 +59,19 @@ ABTest 设计
 
 任务调度的设计
 
+### 算法数据结构
+
+
+
+循环队列
+
+加强堆
+
 
 
 ### Java
 
-
+java中的锁
 
 ### Go
 

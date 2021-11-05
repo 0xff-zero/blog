@@ -107,6 +107,12 @@ Operator 开发
 
 window 下安装docker
 
+## 秀文推荐
+
+2021-11-05 [Go 中的优雅升级](https://studygolang.com/articles/16363) [原文](https://blog.cloudflare.com/graceful-upgrades-in-go/)
+
+2020-04-10 [设计模式概念和七大设计原则](https://cloud.tencent.com/developer/article/1650116)
+
 ## 我的书单
 
 要领

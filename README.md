@@ -75,13 +75,15 @@ ABTest 设计
 
 ### Java
 
-java中的锁
+Java中的锁
 
 ### Go
 
 迷之 context
 
- 2021-07-04 [Go 基础 - channel 和 select](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%9F%BA%E7%A1%80-channel%E5%92%8Cselect.md)
+2021-07-04 [Go 基础 - channel 和 select](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%9F%BA%E7%A1%80-channel%E5%92%8Cselect.md)
+
+2021-08-06 [Go实现Proxy]()
 
 ### Nomad
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。
@@ -105,7 +107,9 @@ Operator 开发
 
 ### 环境
 
-2019-9-10 [window 下安装docker]()
+2019-09-10 [window 下安装docker]()
+
+2020-03-12 [Mac下安装Protoc]()
 
 ## 秀文推荐
 
@@ -113,9 +117,15 @@ Operator 开发
 
 2020-04-10 [设计模式概念和七大设计原则](https://cloud.tencent.com/developer/article/1650116)
 
+2020-03-20 protobuf 三连
+
+- [基本使用](https://razeencheng.com/post/how-to-use-grpc-in-golang-01.html)
+- [简单通讯](https://razeencheng.com/post/how-to-use-grpc-in-golang-02.html)
+- [TLS加密通信和流模式](https://razeencheng.com/post/how-to-use-grpc-in-golang-03.html)
+
 ## 我的书单
 
-要领
+2021-06-11 [要领]()
 
 ## 碎写
 

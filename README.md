@@ -97,7 +97,7 @@ Java中的锁
 
 2020-02-20 [Go中的协程切换](https://www.cnblogs.com/edenpans/p/5893451.html)
 
-2010-12-10 [Go基础-渣渣]()
+2010-12-10 [Go基础-渣渣](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%9F%BA%E7%A1%80-%E6%B8%A3%E6%B8%A3.md)
 
 ### Nomad
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。

@@ -4,7 +4,9 @@ RedisShake
 
 RedisFullCheck
 
+![](https://gitee.com/lidaming/assets/raw/master/redis-sync/structure.png)
 
+![](https://gitee.com/lidaming/assets/raw/master/redis-sync/sequence.png)
 
 参考：
 

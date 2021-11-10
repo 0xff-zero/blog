@@ -57,7 +57,7 @@ ABTest 在业务场景中的作用
 
 ### 架构
 
-Redis 多集群同步方案设计
+2021-11-10 [Redis 多集群同步方案设计](https://github.com/0xff-zero/blog/blob/master/tech/Redis%20%E5%A4%9A%E9%9B%86%E7%BE%A4%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1.md)
 
 2020-10-09 [为什么用缓存](https://github.com/0xff-zero/blog/blob/master/tech/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98.md)
 

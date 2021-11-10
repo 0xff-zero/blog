@@ -57,6 +57,8 @@ ABTest 在业务场景中的作用
 
 ### 架构
 
+Redis 多集群同步方案设计
+
 2020-10-09 [为什么用缓存](https://github.com/0xff-zero/blog/blob/master/tech/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98.md)
 
 这个系统为什么要依赖MQ

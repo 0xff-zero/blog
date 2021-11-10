@@ -93,6 +93,12 @@ Java中的锁
 
 2021-08-06 [Go实现Proxy]()
 
+2020-03-05 [Go中协程的结束方式](https://blog.csdn.net/weixin_44879611/article/details/115537192) [超时](https://blog.csdn.net/u012265809/article/details/114920854)
+
+2020-02-20 [Go中的协程切换](https://www.cnblogs.com/edenpans/p/5893451.html)
+
+2010-12-10 [Go基础-渣渣]()
+
 ### Nomad
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。
 
@@ -122,6 +128,8 @@ Operator 开发
 2018-04-12 [Mac下安装Vue环境](https://github.com/0xff-zero/blog/blob/master/env/vue%20%E5%9C%A8Mac%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 
 ## 秀文推荐
+
+2021-11-10 [Go进程休眠_goroutine的调度](https://blog.csdn.net/weixin_42377790/article/details/112331680) [goroutine的创建、休眠与恢复](https://zhuanlan.zhihu.com/p/386595432)
 
 2021-11-10 [Linux中的进程](https://zhuanlan.zhihu.com/p/58075591)
 

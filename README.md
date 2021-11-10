@@ -115,6 +115,8 @@ Operator 开发
 
 2020-03-12 [Mac下安装Protoc]()
 
+2018-04-12 [Mac下安装Vue环境](https://github.com/0xff-zero/blog/blob/master/env/vue%20%E5%9C%A8Mac%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
+
 ## 秀文推荐
 
 2021-11-10 [Linux中的进程](https://zhuanlan.zhihu.com/p/58075591)

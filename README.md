@@ -127,7 +127,9 @@ Operator 开发
 
 2020-03-12 [Mac下安装Protoc]()
 
-2018-04-12 [Mac下安装Vue环境](https://github.com/0xff-zero/blog/blob/master/env/vue%20%E5%9C%A8Mac%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
+2018-04-12 [vue 环境安装](https://github.com/0xff-zero/blog/blob/master/env/vue%20%E5%9C%A8Mac%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
+
+2017-07-12 [python环境安装]()
 
 ## 秀文推荐
 

@@ -117,6 +117,8 @@ Operator 开发
 
 ## 秀文推荐
 
+2021-11-10 [Linux中的进程](https://zhuanlan.zhihu.com/p/58075591)
+
 2021-11-05 [Go 中的优雅升级](https://studygolang.com/articles/16363) [原文](https://blog.cloudflare.com/graceful-upgrades-in-go/)
 
 2020-04-10 [设计模式概念和七大设计原则](https://cloud.tencent.com/developer/article/1650116)
@@ -126,6 +128,8 @@ Operator 开发
 - [基本使用](https://razeencheng.com/post/how-to-use-grpc-in-golang-01.html)
 - [简单通讯](https://razeencheng.com/post/how-to-use-grpc-in-golang-02.html)
 - [TLS加密通信和流模式](https://razeencheng.com/post/how-to-use-grpc-in-golang-03.html)
+
+
 
 ## 我的书单
 

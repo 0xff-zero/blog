@@ -25,6 +25,8 @@ ABTest 在业务场景中的作用
 
 ## 管理
 
+打工人的价值输出
+
 2021-06-11 [团队融入](https://github.com/0xff-zero/blog/blob/master/manage/%E5%9B%A2%E9%98%9F%E8%9E%8D%E5%85%A5%E7%9A%84%E6%80%9D%E8%80%83.md)
 
 2020-11-02 [招聘CASE - 入职一个月后的离职](https://github.com/0xff-zero/blog/blob/master/manage/%E6%8B%9B%E8%81%98CASE%20-%20%E5%85%A5%E8%81%8C%E4%B8%80%E4%B8%AA%E6%9C%88%E5%90%8E%E7%9A%84%E7%A6%BB%E8%81%8C.md)
@@ -65,7 +67,7 @@ ABTest 在业务场景中的作用
 
 这个系统为什么要依赖MQ
 
-ABTest 设计
+2020-09-10 [ABTest 设计](https://github.com/0xff-zero/blog/blob/master/tech/ABTest%20%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
 
 定时任务调度的设计
 

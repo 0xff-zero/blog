@@ -72,3 +72,10 @@ https://jingwei.link/2019/05/26/golang-routine-scheduler.html
 
 https://www.bilibili.com/read/cv12238773
 
+
+
+
+
+## Go项目脚手架
+
+极度简单：https://github.com/soolaugust/go-toolkit

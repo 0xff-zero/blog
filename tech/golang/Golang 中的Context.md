@@ -1,12 +1,6 @@
 # Golang 中的Context
 
-## 参考列表：
 
-https://zhuanlan.zhihu.com/p/68792989
-
-http://c.biancheng.net/view/5714.html
-
-https://segmentfault.com/a/1190000022887010
 
 
 
@@ -55,4 +49,16 @@ context 包就是为了解决上面所说的这些问题而开发的：在 一�
 ## 源码
 
 
+
+
+
+## 参考列表：
+
+https://zhuanlan.zhihu.com/p/68792989
+
+http://c.biancheng.net/view/5714.html
+
+https://segmentfault.com/a/1190000022887010
+
+https://www.infoq.cn/article/fibearlqstwiekd94bcr
 

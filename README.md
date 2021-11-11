@@ -6,7 +6,7 @@
 
 2021-11-03 [隔离和联通](https://github.com/0xff-zero/blog/blob/master/reflection/%E9%9A%94%E7%A6%BB%E5%92%8C%E8%81%94%E9%80%9A.md)
 
-2020-11-11 [重要节点时间的思考]()
+TODO 2020-11-11 [重要节点时间的思考]()
 
 做技术到底在做什么？
 
@@ -101,6 +101,12 @@ Java中的锁
 
 2010-12-10 [Go基础-渣渣](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%9F%BA%E7%A1%80-%E6%B8%A3%E6%B8%A3.md)
 
+
+
+### vue
+
+TODO 2020-12-02[vue开发-渣渣]()
+
 ### Nomad
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。
 
@@ -127,9 +133,9 @@ Operator 开发
 
 2020-03-12 [Mac下安装Protoc]()
 
-2018-04-12 [vue 环境安装](https://github.com/0xff-zero/blog/blob/master/env/vue%20%E5%9C%A8Mac%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
+TODO 2018-04-12 [vue 环境安装](https://github.com/0xff-zero/blog/blob/master/env/vue%20%E5%9C%A8Mac%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 
-2017-07-12 [python环境安装]()
+TODO 2017-07-12 [python环境安装]()
 
 ## 秀文推荐
 

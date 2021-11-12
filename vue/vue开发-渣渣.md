@@ -17,3 +17,27 @@ npm ERR! gyp ERR! find VS https://github.com/nodejs/node-gyp#on-windows
 npm ERR! gyp ERR! find VS **************************************************************
 ```
 
+
+
+## node版本控制工具n
+
+安装命令：
+
+```shell
+npm install -g n
+```
+
+切换版本命令：
+
+```shell
+n v{xx.xx}
+```
+
+
+
+## npm 查看当前配置的将镜像源
+
+```shell
+npm config get registry
+```
+

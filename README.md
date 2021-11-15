@@ -14,8 +14,6 @@
 
 应用性能的催化剂 - 算法
 
-ABTest 在业务场景中的作用
-
 数据变更通知方式分析
 
 
@@ -67,7 +65,9 @@ ABTest 在业务场景中的作用
 
 这个系统为什么要依赖MQ
 
-2020-09-10 [ABTest 设计](https://github.com/0xff-zero/blog/blob/master/tech/ABTest%20%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
+2020-09-20 [ABTest-系统设计](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
+
+2020-09-10 [ABTest-系统分析](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90.md)
 
 定时任务调度的设计
 

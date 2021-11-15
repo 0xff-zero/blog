@@ -79,3 +79,9 @@ https://www.bilibili.com/read/cv12238773
 ## Go项目脚手架
 
 极度简单：https://github.com/soolaugust/go-toolkit
+
+
+
+## Go 中的指针数组和数组指针
+
+https://learnku.com/articles/44096

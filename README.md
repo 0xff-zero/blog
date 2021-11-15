@@ -65,7 +65,7 @@
 
 这个系统为什么要依赖MQ
 
-2020-09-20 [ABTest-系统设计](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
+2020-09-20 [ABTest-系统原理](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
 
 2020-09-10 [ABTest-系统分析](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90.md)
 

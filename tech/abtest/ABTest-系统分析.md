@@ -1,4 +1,4 @@
-# ABTest 系统设计
+# ABTest-系统分析
 
 ![](https://gitee.com/lidaming/assets/raw/master/abtest/abtest_compare.jfif)
 
@@ -61,13 +61,13 @@
 
 在以上三个关键定义中可以**嵌套域和层。域包含层。层包含实验，也可以包含域**。为了更好的理解它们之前的关系，我们可以分别看下其不同的设置关系:
 
-![](domain-layer-base.jpg)
+![](https://gitee.com/lidaming/assets/raw/master/abtest/domain-layer.jpg)
 
  a-三层的基本重叠设置
 
 在上图中，我们简单地将参数划分为3个层。在这种情况下，每个请求将最多同时出现在三个实验中，每个实验都只能使用对应层的参数。
 
-![](repeat-norepeat.jpg)
+![](https://gitee.com/lidaming/assets/raw/master/abtest/repeat-norepeat.jpg)
 
 b-具有非重叠和重叠域的设置
 
@@ -75,11 +75,11 @@ b-具有非重叠和重叠域的设置
 
 虽然b这种嵌套方式看起来略微有点复杂，但它有几个优点。首先，拥有一个不重叠的域，可以允许我们进行一些需要改变大量通常不会同时使用的参数的实验。其次，这种嵌套可以允许我们进行不同的参数划分，例如，我们可以设想三个域：一个非重叠的，一个与参数分区重叠的，一个与参数分区不同的重叠域。最后，嵌套可以让我们更有效地使用空间，这取决于哪些分区最常用，以及哪些跨层参数实验最常用。
 
-![](repeat-norepeat-lanch.jpg)
+![](https://gitee.com/lidaming/assets/raw/master/abtest/repeat-norepeat-lanch.jpg)
 
 c-具有非重叠、重叠和启动域的设置
 
-![](multi-complex.jpg)
+![](https://gitee.com/lidaming/assets/raw/master/abtest/multi-complex.jpg)
 
 d-具有多个域的复杂设置
 

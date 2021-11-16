@@ -85,3 +85,13 @@ https://www.bilibili.com/read/cv12238773
 ## Go 中的指针数组和数组指针
 
 https://learnku.com/articles/44096
+
+
+
+
+
+## Go定义枚举类型
+
+https://cyent.github.io/golang/other/enum/
+
+https://youwu.today/skill/backend/using-enum-in-golang/

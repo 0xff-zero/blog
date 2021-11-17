@@ -1,5 +1,49 @@
 # Linux-渣渣
 
+## shell 循环
+
+可以使用for循环
+
+```shell
+for((i=1;i<=10;i++));  
+do   
+echo $(expr $i \* 3 + 1);  
+done  
+```
+
+可以使用while循环：
+
+```shell
+while [ True ]; do
+    echo 'running'
+    sleep 2
+done
+```
+
+
+
+## systemctl
+
+systemctl 
+
+--type=‘’ 筛选类型
+
+--state ='筛选状态'
+
+## 如何解读 Ubuntu的server --status-all
+
+https://askubuntu.com/questions/407075/how-to-read-service-status-all-results
+
+https://ubuntuqa.com/article/1040.html
+
+## ssh生成公私钥
+
+https://www.jianshu.com/p/31cbbbc5f9fa
+
+`ssh-keygen -t rsa -C "your_email@example.com"`
+
+
+
 ## ubuntu 安装go
 
 https://cloud.tencent.com/developer/article/1623121

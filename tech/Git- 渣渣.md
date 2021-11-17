@@ -1,5 +1,17 @@
 # Git- 渣渣
 
+## 绑定本地分支和远程分支
+
+git branch --set-upstream-to=origin/{remote_branch} {local_branch}
+
+## git 推拉远程分支
+
+git pull/push origin {branch}
+
+## git checkout 远程分支
+
+git checkout -b {branch}
+
 ## 创建分支
 
 `git branch {branchname}`

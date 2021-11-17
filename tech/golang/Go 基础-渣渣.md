@@ -1,8 +1,44 @@
 # Go 基础-渣渣
 
+## Go test指定文件测试的时候无法加载包
+
+https://www.cnblogs.com/Detector/p/10010292.html
+
+## Go test执行指定文件指定方法
+
+指定文件
+
+```shell
+go test -v hello_test.go
+```
+
+
+
+指定文件指定方法
+
+```shell
+$ go test -v hello_test.go -test.run TestHello
+```
+
+https://blog.csdn.net/cup_chenyubo/article/details/79231313
+
 ## Go 语言 goto、break、continue 三个语法
 
 https://blog.csdn.net/u012265809/article/details/114874112
+
+## 循环打印map
+
+```go
+scene := make(map[string]int)
+scene["route"] = 66
+scene["brazil"] = 4
+scene["china"] = 960
+for k, v := range scene {
+    fmt.Println(k, v)
+}
+```
+
+http://c.biancheng.net/view/32.html
 
 ## 命名循环
 

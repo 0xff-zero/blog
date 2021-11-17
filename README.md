@@ -8,7 +8,7 @@
 
 2020-11-11 [重要节点时间的思考](https://github.com/0xff-zero/blog/blob/master/reflection/%E9%87%8D%E8%A6%81%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83.md)
 
-做技术到底在做什么？
+做技术到底在做什么
 
 开发过程中的锁
 

@@ -29,9 +29,9 @@
 
 2020-11-02 [招聘CASE - 入职一个月后的离职](https://github.com/0xff-zero/blog/blob/master/manage/%E6%8B%9B%E8%81%98CASE%20-%20%E5%85%A5%E8%81%8C%E4%B8%80%E4%B8%AA%E6%9C%88%E5%90%8E%E7%9A%84%E7%A6%BB%E8%81%8C.md)
 
-面试过程中的关注点
+如何挑选候选人
 
-如何组建一个合理的团队
+如何组建团队
 
 团队文化的形成
 
@@ -51,9 +51,15 @@
 
 
 
-监控体系建设
+监控体系建设 http://
 
 响应式编程
+
+两阶段和三阶段协议
+
+分布式一致性协议-Raft、Poxas、ZAB
+
+技术债务和历史包袱
 
 
 
@@ -63,17 +69,17 @@
 
 2020-10-09 [为什么用缓存](https://github.com/0xff-zero/blog/blob/master/tech/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98.md)
 
-这个系统为什么要依赖MQ
+系统为什么要依赖MQ http://
 
 2020-09-20 [ABTest-系统原理](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
 
 2020-09-10 [ABTest-系统分析](https://github.com/0xff-zero/blog/blob/master/tech/abtest/ABTest-%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90.md)
 
-定时任务调度的设计
+定时任务调度的设计(https://github.com/0xff-zero/blog/blob/master/tech/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0%E8%AE%BE%E8%AE%A1.md)
 
-延迟队列设计
+延迟队列设计(https://github.com/0xff-zero/blog/blob/master/tech/%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97%E8%AE%BE%E8%AE%A1.md)
 
-MQ扩展性思考
+MQ扩展性思考(https://github.com/0xff-zero/blog/blob/master/tech/MQ%20%E6%89%A9%E5%B1%95%E6%80%A7%E6%80%9D%E8%80%83)
 
 ### 算法数据结构
 
@@ -83,13 +89,79 @@ MQ扩展性思考
 
 加强堆
 
+布隆过滤器
+
 
 
 ### Java
 
-Java中的锁
+Java 中的锁
 
 Java 分布式事务
+
+Java 中的并发
+
+JVM 介绍
+
+JVM 调优
+
+Java 的Happen-Before原则
+
+Spring - 循环依赖
+
+Spring - Bean生命周期
+
+Spring - 容器生命周期
+
+Java 中的SPI
+
+Dubbo 架构分析
+
+Spring Cloud 分析
+
+### Mysql
+
+mysql 中的binlog /redo/undo
+
+mysql 架构
+
+mysql 调优
+
+mysql 索引结构
+
+Mysql中的锁
+
+### Redis
+
+Redis的Key过期原理
+
+Redis的序列化机制
+
+Redis的主从同步机制
+
+Redis的网络模型
+
+Redis性能分析
+
+Redis 实践
+
+### MQ
+
+kafka的集群原理
+
+kafka的数据同步原理
+
+kafka的网络模型
+
+Rocket的网络模型
+
+Rocket的存储原理
+
+RabbitMQ的存储原理
+
+RabbitMQ的主从同步原理
+
+RabbitMQ使用
 
 ### Go
 
@@ -111,7 +183,7 @@ Java 分布式事务
 
 ### vue
 
-2020-12-02[vue开发-渣渣](https://github.com/0xff-zero/blog/blob/master/vue/vue%E5%BC%80%E5%8F%91-%E6%B8%A3%E6%B8%A3.md)
+2020-12-02 [vue开发-渣渣](https://github.com/0xff-zero/blog/blob/master/vue/vue%E5%BC%80%E5%8F%91-%E6%B8%A3%E6%B8%A3.md)
 
 ### Nomad
 一个简单而灵活的工作负载编排器，用于跨本地和云大规模部署和管理容器和非容器化应用程序。
@@ -122,12 +194,16 @@ offical website:https://www.nomadproject.io/
 
 2021-11-02 [[翻译]Nomad 体系介绍](https://github.com/0xff-zero/blog/blob/master/tech/nomad/Nomad%20%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.md)
 
-### kubernetes
+### Cloud Native
 
-体系介绍 - 概况
-体系介绍 - ApiServer
+K8S体系介绍 - 概况
+K8S体系介绍 - ApiServer
 
-Operator 开发
+K8S Operator 开发
+
+istio 体系了解
+
+
 
 
 
@@ -165,7 +241,11 @@ Operator 开发
 
 ## 我的书单
 
-2021-06-11 [要领]()
+2021-10-27 [[翻译]缩放具有分区同步的大型生产群集](https://github.com/0xff-zero/blog/blob/master/reading/%E7%BC%A9%E6%94%BE%E5%85%B7%E6%9C%89%E5%88%86%E5%8C%BA%E5%90%8C%E6%AD%A5%E7%9A%84%E5%A4%A7%E5%9E%8B%E7%94%9F%E4%BA%A7%E7%BE%A4%E9%9B%86-Scaling%20Large%20Production%20Clusters%20with%20Partitioned%20Synchronization.md)
+
+2021-06-11 [要领](https://github.com/0xff-zero/blog/blob/master/reading/%E8%A6%81%E9%A2%86.md)
+
+
 
 ## 碎写
 

@@ -8,7 +8,7 @@
 
 2020-11-11 [重要节点时间的思考](https://github.com/0xff-zero/blog/blob/master/reflection/%E9%87%8D%E8%A6%81%E6%97%B6%E9%97%B4%E8%8A%82%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83.md)
 
-做技术到底在做什么
+2018-7-12 [做技术到底在做什么](https://github.com/0xff-zero/blog/blob/master/reflection/%E5%81%9A%E6%8A%80%E6%9C%AF%E5%88%B0%E5%BA%95%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88.md)
 
 开发过程中的锁
 
@@ -89,9 +89,13 @@ MQ扩展性思考
 
 Java中的锁
 
+Java 分布式事务
+
 ### Go
 
-迷之 context
+2021-11-02 [迷之 context](https://github.com/0xff-zero/blog/blob/master/tech/golang/Golang%20%E4%B8%AD%E7%9A%84Context.md)
+
+2021-10-10 [设计模式]()
 
 2021-07-04 [Go 基础 - channel 和 select](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%9F%BA%E7%A1%80-channel%E5%92%8Cselect.md)
 

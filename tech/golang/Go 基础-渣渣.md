@@ -1,5 +1,9 @@
 # Go 基础-渣渣
 
+## go:nosplit 是什么
+
+https://maiyang.me/post/2020-07-21-go-nosplit/
+
 ## Go test指定文件测试的时候无法加载包
 
 https://www.cnblogs.com/Detector/p/10010292.html

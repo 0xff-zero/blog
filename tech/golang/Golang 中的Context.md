@@ -981,7 +981,69 @@ func main() {
 }
 ```
 
+当 n == 5 的时候，直接 break 掉。那么 gen 函数的协程就会执行无限循环，永远不会停下来。发生了 goroutine 泄漏。
 
+用 context 改进这个例子：
+
+```go
+func gen(ctx context.Context) <-chan int {
+    ch := make(chan int)
+    go func() {
+        var n int
+        for {
+            select {
+            case <-ctx.Done():
+                return
+            case ch <- n:
+                n++
+                time.Sleep(time.Second)
+            }
+        }
+    }()
+    return ch
+}
+
+func main() {
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel() // 避免其他地方忘记 cancel，且重复调用不影响
+
+    for n := range gen(ctx) {
+        fmt.Println(n)
+        if n == 5 {
+            cancel()
+            break
+        }
+    }
+    // ……
+}
+
+```
+
+增加一个 context，在 break 前调用 cancel 函数，取消 goroutine。gen 函数在接收到取消信号后，直接退出，系统回收资源。
+
+## context 真的这么好吗
+
+读完全文，你一定有这种感觉：context 就是为 server 而设计的。说什么处理一个请求，需要启动多个 goroutine 并行地去处理，并且在这些 goroutine 之间还要传递一些共享的数据等等，这些都是写一个 server 要做的事。
+
+没错，Go 很适合写 server，但它终归是一门通用的语言。你在用 Go 做 Leetcode 上面的题目的时候，肯定不会认为它和一般的语言有什么差别。所以，很多特性好不好，应该从 `Go 只是一门普通的语言，很擅长写 server` 的角度来看。
+
+从这个角度来看，context 并没有那么美好。Go 官方建议我们把 Context 作为函数的第一个参数，甚至连名字都准备好了。这造成一个后果：因为我们想控制所有的协程的取消动作，所以需要在几乎所有的函数里加上一个 Context 参数。很快，我们的代码里，context 将像病毒一样扩散的到处都是。
+
+在参考资料`【Go2 应该去掉 context】`这篇英文博客里，作者甚至调侃说：如果要把 Go 标准库的大部分函数都加上 context 参数的话，例如下面这样：
+
+```text
+n, err := r.Read(context.TODO(), p)
+```
+
+就给我来一枪吧！
+
+原文是这样说的：`put a bullet in my head, please.`我当时看到这句话的时候，会心一笑。这可能就是陶渊明说的：每有会意，便欣然忘食。当然，我是在晚饭会看到这句话的。
+
+为了表达自己对 context 并没有什么好感，作者接着又说了一句：If you use ctx.Value in my (non-existent) company, you’re fired. 简直太幽默了，哈哈。
+
+另外，像 `WithCancel`、`WithDeadline`、`WithTimeout`、`WithValue` 这些创建函数，实际上是创建了一个个的链表结点而已。我们知道，对链表的操作，通常都是 `O(n)` 复杂度的，效率不高。
+
+那么，context 包到底解决了什么问题呢？答案是：`cancelation`。仅管它并不完美，但它确实很简洁地解决了问题。
 
 ## 参考列表：
 

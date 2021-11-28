@@ -592,9 +592,458 @@ func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 
 #### timerCtx
 
-timerCtx 基于 cancelCtx，只是多了一个 time.Timer 和一个 deadline。Timer 会在 deadline 到来时，自动取消 context。
+timerCtx 基于 cancelCtx，只是多了一个 time.Timer 和一个 deadline。Timer 会在 deadline 到来时，自动取消 context。代码如下：
 
+```go
 
+// A timerCtx carries a timer and a deadline. It embeds a cancelCtx to
+// implement Done and Err. It implements cancel by stopping its timer then
+// delegating to cancelCtx.cancel.
+type timerCtx struct {
+	cancelCtx
+	timer *time.Timer // Under cancelCtx.mu.
+
+	deadline time.Time
+}
+```
+
+timerCtx 首先是一个 cancelCtx，所以它能取消。看下 cancel() 方法：
+
+```go
+func (c *timerCtx) cancel(removeFromParent bool, err error) {
+	c.cancelCtx.cancel(false, err)
+	if removeFromParent {
+		// Remove this timerCtx from its parent cancelCtx's children.
+		removeChild(c.cancelCtx.Context, c)
+	}
+	c.mu.Lock()
+	if c.timer != nil {
+		c.timer.Stop()
+		c.timer = nil
+	}
+	c.mu.Unlock()
+}
+```
+
+创建 timerCtx 的方法：
+
+```go
+// WithTimeout returns WithDeadline(parent, time.Now().Add(timeout)).
+//
+// Canceling this context releases resources associated with it, so code should
+// call cancel as soon as the operations running in this Context complete:
+//
+// 	func slowOperationWithTimeout(ctx context.Context) (Result, error) {
+// 		ctx, cancel := context.WithTimeout(ctx, 100*time.Millisecond)
+// 		defer cancel()  // releases resources if slowOperation completes before timeout elapses
+// 		return slowOperation(ctx)
+// 	}
+func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc) {
+	return WithDeadline(parent, time.Now().Add(timeout))
+}
+```
+
+`WithTimeout` 函数直接调用了 `WithDeadline`，传入的 deadline 是当前时间加上 timeout 的时间，也就是从现在开始再经过 timeout 时间就算超时。也就是说，`WithDeadline` 需要用的是绝对时间。重点来看它：
+
+```go
+
+// WithDeadline returns a copy of the parent context with the deadline adjusted
+// to be no later than d. If the parent's deadline is already earlier than d,
+// WithDeadline(parent, d) is semantically equivalent to parent. The returned
+// context's Done channel is closed when the deadline expires, when the returned
+// cancel function is called, or when the parent context's Done channel is
+// closed, whichever happens first.
+//
+// Canceling this context releases resources associated with it, so code should
+// call cancel as soon as the operations running in this Context complete.
+func WithDeadline(parent Context, d time.Time) (Context, CancelFunc) {
+	if parent == nil {
+		panic("cannot create context from nil parent")
+	}
+	if cur, ok := parent.Deadline(); ok && cur.Before(d) {
+		// The current deadline is already sooner than the new one.
+		return WithCancel(parent)
+	}
+	c := &timerCtx{
+		cancelCtx: newCancelCtx(parent),
+		deadline:  d,
+	}
+	propagateCancel(parent, c)
+	dur := time.Until(d)
+	if dur <= 0 {
+		c.cancel(true, DeadlineExceeded) // deadline has already passed
+		return c, func() { c.cancel(false, Canceled) }
+	}
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if c.err == nil {
+		c.timer = time.AfterFunc(dur, func() {
+			c.cancel(true, DeadlineExceeded)
+		})
+	}
+	return c, func() { c.cancel(true, Canceled) }
+}
+```
+
+也就是说仍然要把子节点挂靠到父节点，一旦父节点取消了，会把取消信号向下传递到子节点，子节点随之取消。
+
+有一个特殊情况是，如果要创建的这个子节点的 deadline 比父节点要晚，也就是说如果父节点是时间到自动取消，那么一定会取消这个子节点，导致子节点的 deadline 根本不起作用，因为子节点在 deadline 到来之前就已经被父节点取消了。
+
+这个函数的最核心的一句是：
+
+```go
+c.timer = time.AfterFunc(dur, func() {
+			c.cancel(true, DeadlineExceeded)
+		})
+```
+
+c.timer 会在 d 时间间隔后，自动调用 cancel 函数，并且传入的错误就是 `DeadlineExceeded`：
+
+```go
+var DeadlineExceeded error = deadlineExceededError{}
+
+type deadlineExceededError struct{}
+
+func (deadlineExceededError) Error() string   { return "context deadline exceeded" }
+```
+
+也就是超时错误。
+
+#### valueCtx
+
+```go
+// A valueCtx carries a key-value pair. It implements Value for that key and
+// delegates all other calls to the embedded Context.
+type valueCtx struct {
+	Context
+	key, val interface{}
+}
+```
+
+主要实现了两个方法：
+
+```go
+func (c *valueCtx) String() string {
+	return contextName(c.Context) + ".WithValue(type " +
+		reflectlite.TypeOf(c.key).String() +
+		", val " + stringify(c.val) + ")"
+}
+
+func (c *valueCtx) Value(key interface{}) interface{} {
+	if c.key == key {
+		return c.val
+	}
+	return c.Context.Value(key)
+}
+```
+
+由于它直接将 Context 作为匿名字段，因此仅管它只实现了 2 个方法，其他方法继承自父 context。但它仍然是一个 Context，这是 Go 语言的一个特点。
+
+创建 valueCtx 的函数：
+
+```go
+
+// WithValue returns a copy of parent in which the value associated with key is
+// val.
+//
+// Use context Values only for request-scoped data that transits processes and
+// APIs, not for passing optional parameters to functions.
+//
+// The provided key must be comparable and should not be of type
+// string or any other built-in type to avoid collisions between
+// packages using context. Users of WithValue should define their own
+// types for keys. To avoid allocating when assigning to an
+// interface{}, context keys often have concrete type
+// struct{}. Alternatively, exported context key variables' static
+// type should be a pointer or interface.
+func WithValue(parent Context, key, val interface{}) Context {
+	if parent == nil {
+		panic("cannot create context from nil parent")
+	}
+	if key == nil {
+		panic("nil key")
+	}
+	if !reflectlite.TypeOf(key).Comparable() {
+		panic("key is not comparable")
+	}
+	return &valueCtx{parent, key, val}
+}
+```
+
+对 key 的要求是可比较，因为之后需要通过 key 取出 context 中的值，可比较是必须的。
+
+通过层层传递 context，最终形成这样一棵树：
+
+![](https://gitee.com/lidaming/assets/raw/master/goland/context_value.jpeg)
+
+和链表有点像，只是它的方向相反：Context 指向它的父节点，链表则指向下一个节点。通过 WithValue 函数，可以创建层层的 valueCtx，存储 goroutine 间可以共享的变量。
+
+取值的过程，实际上是一个递归查找的过程：
+
+```go
+func (c *valueCtx) Value(key interface{}) interface{} {
+	if c.key == key {
+		return c.val
+	}
+	return c.Context.Value(key)
+}
+```
+
+它会顺着链路一直往上找，比较当前节点的 key 是否是要找的 key，如果是，则直接返回 value。否则，一直顺着 context 往前，最终找到根节点（一般是 emptyCtx），直接返回一个 nil。所以用 Value 方法的时候要判断结果是否为 nil。
+
+因为查找方向是往上走的，所以，父节点没法获取子节点存储的值，子节点却可以获取父节点的值。
+
+`WithValue` 创建 context 节点的过程实际上就是创建链表节点的过程。两个节点的 key 值是可以相等的，但它们是两个不同的 context 节点。查找的时候，会向上查找到最后一个挂载的 context 节点，也就是离得比较近的一个父节点 context。所以，整体上而言，用 `WithValue` 构造的其实是一个低效率的链表。
+
+如果你接手过项目，肯定经历过这样的窘境：在一个处理过程中，有若干子函数、子协程。各种不同的地方会向 context 里塞入各种不同的 k-v 对，最后在某个地方使用。
+
+你根本就不知道什么时候什么地方传了什么值？这些值会不会被“覆盖”（底层是两个不同的 context 节点，查找的时候，只会返回一个结果）？你肯定会崩溃的。
+
+而这也是 `context.Value` 最受争议的地方。很多人建议尽量不要通过 context 传值。
+
+## 使用建议
+
+context 会在函数传递间传递。只需要在适当的时间调用 cancel 函数向 goroutines 发出取消信号或者调用 Value 函数取出 context 中的值。
+
+在官方博客里，对于使用 context 提出了几点建议：
+
+1. Do not store Contexts inside a struct type; instead, pass a Context explicitly to each function that needs it. The Context should be the first parameter, typically named ctx.
+2. Do not pass a nil Context, even if a function permits it. Pass context.TODO if you are unsure about which Context to use.
+3. Use context Values only for request-scoped data that transits processes and APIs, not for passing optional parameters to functions.
+4. The same Context may be passed to functions running in different goroutines; Contexts are safe for simultaneous use by multiple goroutines.
+
+简单翻译一下：
+
+1. 不要将 Context 塞到结构体里。直接将 Context 类型作为函数的第一参数，而且一般都命名为 ctx。
+2. 不要向函数传入一个 nil 的 context，如果你实在不知道传什么，标准库给你准备好了一个 context：todo。
+3. 不要把本应该作为函数参数的类型塞到 context 中，context 存储的应该是一些共同的数据。例如：登陆的 session、cookie 等。
+4. 同一个 context 可能会被传递到多个 goroutine，别担心，context 是并发安全的。
+
+### 传递共享数据
+
+对于 Web 服务端开发，往往希望将一个请求处理的整个过程串起来，这就非常依赖于 Thread Local（对于 Go 可理解为单个协程所独有） 的变量，而在 Go 语言中并没有这个概念，因此需要在函数调用的时候传递 context。
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+)
+
+func main() {
+    ctx := context.Background()
+    process(ctx)
+
+    ctx = context.WithValue(ctx, "traceId", "qcrao-2019")
+    process(ctx)
+}
+
+func process(ctx context.Context) {
+    traceId, ok := ctx.Value("traceId").(string)
+    if ok {
+        fmt.Printf("process over. trace_id=%s\n", traceId)
+    } else {
+        fmt.Printf("process over. no trace_id\n")
+    }
+}
+```
+
+运行结果：
+
+```shell
+process over. no trace_id
+process over. trace_id=qcrao-2019
+```
+
+第一次调用 process 函数时，ctx 是一个空的 context，自然取不出来 traceId。第二次，通过 `WithValue` 函数创建了一个 context，并赋上了 `traceId` 这个 key，自然就能取出来传入的 value 值。
+
+当然，现实场景中可能是从一个 HTTP 请求中获取到的 Request-ID。所以，下面这个样例可能更适合：
+
+```go
+const requestIDKey int = 0
+
+func WithRequestID(next http.Handler) http.Handler {
+    return http.HandlerFunc(
+        func(rw http.ResponseWriter, req *http.Request) {
+            // 从 header 中提取 request-id
+            reqID := req.Header.Get("X-Request-ID")
+            // 创建 valueCtx。使用自定义的类型，不容易冲突
+            ctx := context.WithValue(
+                req.Context(), requestIDKey, reqID)
+
+            // 创建新的请求
+            req = req.WithContext(ctx)
+
+            // 调用 HTTP 处理函数
+            next.ServeHTTP(rw, req)
+        }
+    )
+}
+
+// 获取 request-id
+func GetRequestID(ctx context.Context) string {
+    ctx.Value(requestIDKey).(string)
+}
+
+func Handle(rw http.ResponseWriter, req *http.Request) {
+    // 拿到 reqId，后面可以记录日志等等
+    reqID := GetRequestID(req.Context())
+    ...
+}
+
+func main() {
+    handler := WithRequestID(http.HandlerFunc(Handle))
+    http.ListenAndServe("/", handler)
+}
+```
+
+### 取消goroutine
+
+我们先来设想一个场景：打开外卖的订单页，地图上显示外卖小哥的位置，而且是每秒更新 1 次。app 端向后台发起 websocket 连接（现实中可能是轮询）请求后，后台启动一个协程，每隔 1 秒计算 1 次小哥的位置，并发送给端。如果用户退出此页面，则后台需要“取消”此过程，退出 goroutine，系统回收资源。
+
+后端可能的实现如下：
+
+```go
+func Perform() {
+    for {
+        calculatePos()
+        sendResult()
+        time.Sleep(time.Second)
+    }
+}
+```
+
+如果需要实现“取消”功能，并且在不了解 context 功能的前提下，可能会这样做：给函数增加一个指针型的 bool 变量，在 for 语句的开始处判断 bool 变量是发由 true 变为 false，如果改变，则退出循环。
+
+上面给出的简单做法，可以实现想要的效果，没有问题，但是并不优雅，并且一旦协程数量多了之后，并且各种嵌套，就会很麻烦。优雅的做法，自然就要用到 context。
+
+```go
+func Perform(ctx context.Context) {
+    for {
+        calculatePos()
+        sendResult()
+
+        select {
+        case <-ctx.Done():
+            // 被取消，直接返回
+            return
+        case <-time.After(time.Second):
+            // block 1 秒钟 
+        }
+    }
+}
+```
+
+主流程可能是这样的：
+
+```go
+ctx, cancel := context.WithTimeout(context.Background(), time.Hour)
+go Perform(ctx)
+
+// ……
+// app 端返回页面，调用cancel 函数
+cancel()
+```
+
+注意一个细节，WithTimeOut 函数返回的 context 和 cancelFun 是分开的。context 本身并没有取消函数，这样做的原因是取消函数只能由外层函数调用，防止子节点 context 调用取消函数，从而严格控制信息的流向：由父节点 context 流向子节点 context。
+
+### 防止goroutine泄露
+
+前面那个例子里，goroutine 还是会自己执行完，最后返回，只不过会多浪费一些系统资源。这里改编一个“如果不用 context 取消，goroutine 就会泄漏的例子”，来自参考资料：`【避免协程泄漏】`。
+
+```go
+func gen() <-chan int {
+    ch := make(chan int)
+    go func() {
+        var n int
+        for {
+            ch <- n
+            n++
+            time.Sleep(time.Second)
+        }
+    }()
+    return ch
+}
+```
+
+这是一个可以生成无限整数的协程，但如果我只需要它产生的前 5 个数，那么就会发生 goroutine 泄漏：
+
+```go
+func main() {
+    for n := range gen() {
+        fmt.Println(n)
+        if n == 5 {
+            break
+        }
+    }
+    // ……
+}
+```
+
+当 n == 5 的时候，直接 break 掉。那么 gen 函数的协程就会执行无限循环，永远不会停下来。发生了 goroutine 泄漏。
+
+用 context 改进这个例子：
+
+```go
+func gen(ctx context.Context) <-chan int {
+    ch := make(chan int)
+    go func() {
+        var n int
+        for {
+            select {
+            case <-ctx.Done():
+                return
+            case ch <- n:
+                n++
+                time.Sleep(time.Second)
+            }
+        }
+    }()
+    return ch
+}
+
+func main() {
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel() // 避免其他地方忘记 cancel，且重复调用不影响
+
+    for n := range gen(ctx) {
+        fmt.Println(n)
+        if n == 5 {
+            cancel()
+            break
+        }
+    }
+    // ……
+}
+
+```
+
+增加一个 context，在 break 前调用 cancel 函数，取消 goroutine。gen 函数在接收到取消信号后，直接退出，系统回收资源。
+
+## context 真的这么好吗
+
+读完全文，你一定有这种感觉：context 就是为 server 而设计的。说什么处理一个请求，需要启动多个 goroutine 并行地去处理，并且在这些 goroutine 之间还要传递一些共享的数据等等，这些都是写一个 server 要做的事。
+
+没错，Go 很适合写 server，但它终归是一门通用的语言。你在用 Go 做 Leetcode 上面的题目的时候，肯定不会认为它和一般的语言有什么差别。所以，很多特性好不好，应该从 `Go 只是一门普通的语言，很擅长写 server` 的角度来看。
+
+从这个角度来看，context 并没有那么美好。Go 官方建议我们把 Context 作为函数的第一个参数，甚至连名字都准备好了。这造成一个后果：因为我们想控制所有的协程的取消动作，所以需要在几乎所有的函数里加上一个 Context 参数。很快，我们的代码里，context 将像病毒一样扩散的到处都是。
+
+在参考资料`【Go2 应该去掉 context】`这篇英文博客里，作者甚至调侃说：如果要把 Go 标准库的大部分函数都加上 context 参数的话，例如下面这样：
+
+```text
+n, err := r.Read(context.TODO(), p)
+```
+
+就给我来一枪吧！
+
+原文是这样说的：`put a bullet in my head, please.`我当时看到这句话的时候，会心一笑。这可能就是陶渊明说的：每有会意，便欣然忘食。当然，我是在晚饭会看到这句话的。
+
+为了表达自己对 context 并没有什么好感，作者接着又说了一句：If you use ctx.Value in my (non-existent) company, you’re fired. 简直太幽默了，哈哈。
+
+另外，像 `WithCancel`、`WithDeadline`、`WithTimeout`、`WithValue` 这些创建函数，实际上是创建了一个个的链表结点而已。我们知道，对链表的操作，通常都是 `O(n)` 复杂度的，效率不高。
+
+那么，context 包到底解决了什么问题呢？答案是：`cancelation`。仅管它并不完美，但它确实很简洁地解决了问题。
 
 ## 参考列表：
 

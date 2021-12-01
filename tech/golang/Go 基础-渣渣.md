@@ -1,5 +1,33 @@
 # Go 基础-渣渣
 
+# go中的线程数量管理
+
+https://colobu.com/2020/12/20/threads-in-go-runtime/
+
+https://blog.csdn.net/u012807459/article/details/39754973
+
+https://zhuanlan.zhihu.com/p/239817357
+
+https://developer.51cto.com/art/202110/687260.htm
+
+## go 协程的资源消耗
+
+https://blog.csdn.net/u012279631/article/details/80486114
+
+https://www.cnblogs.com/liang1101/p/7285955.html
+
+## go 协程的退出
+
+https://geektutu.com/post/hpg-exit-goroutine.html
+
+## go 中的Condition
+
+https://segmentfault.com/a/1190000039881684
+
+https://geektutu.com/post/hpg-sync-cond.html
+
+https://ieevee.com/tech/2019/06/15/cond.html
+
 ## go中的&和*
 
 1. & 是取地址符号 , 即取得某个变量的地址 , 如 ; &a

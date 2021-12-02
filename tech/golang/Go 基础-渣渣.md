@@ -1,6 +1,16 @@
 # Go 基础-渣渣
 
-# go中的线程数量管理
+## go 多main函数编译
+
+https://www.sunzhongwei.com/how-to-organize-golang-project-directory-make-a-project-contains-multiple-main-entrance-to-program
+
+## go 是如何启动
+
+https://www.cnblogs.com/qcrao-2018/p/11124360.html
+
+https://blog.csdn.net/xz_studying/article/details/103107320
+
+## go中的线程数量管理
 
 https://colobu.com/2020/12/20/threads-in-go-runtime/
 
@@ -98,6 +108,30 @@ func TestFor(t *testing.T){
 ```
 
 为每个循环指定名称，可以跳出固定的循环
+
+## 遍历map
+
+```go
+for key, value := range mapVar{
+    //
+}
+```
+
+```go
+for key := range scene {
+    
+}
+```
+
+
+
+## 遍历切片
+
+```go
+for index, value := range slice {
+    fmt.Printf("Index: %d Value: %d\n", index, value)
+}
+```
 
 
 

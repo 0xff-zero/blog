@@ -1,5 +1,9 @@
 # Git- 渣渣
 
+## git rebase和merge
+
+https://morningspace.github.io/tech/git-merge-stories-6/
+
 ## 绑定本地分支和远程分支
 
 git branch --set-upstream-to=origin/{remote_branch} {local_branch}

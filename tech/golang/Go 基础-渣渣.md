@@ -1,5 +1,38 @@
 # Go 基础-渣渣
 
+## 查找进程
+
+https://blog.csdn.net/a41888313/article/details/103386405
+
+## go 值gorm
+
+1. 通过Model 可以直接获取自增id
+2. 
+
+## 继承指针与否
+
+
+
+## go中的反引号
+
+
+
+https://blog.csdn.net/lengyue1084/article/details/107623646
+
+http://www.lvesu.com/blog/main/cms-851.html
+
+## go 中为什么有指针
+
+https://www.php.cn/be/go/440233.html
+
+https://www.jianshu.com/p/f82414251c6e
+
+## go 操作数据库
+
+Gorm:https://zhuanlan.zhihu.com/p/388652094
+
+原始写法：https://learnku.com/docs/build-web-application-with-golang/053-uses-the-sqlite-database/3183
+
 ## go 多main函数编译
 
 https://www.sunzhongwei.com/how-to-organize-golang-project-directory-make-a-project-contains-multiple-main-entrance-to-program

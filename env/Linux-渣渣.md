@@ -1,5 +1,13 @@
 # Linux-渣渣
 
+
+
+## pstree 命令
+
+-p {pid} 查看pid的进程树
+
+
+
 ## shell 循环
 
 可以使用for循环

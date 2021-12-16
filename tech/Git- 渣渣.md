@@ -1,5 +1,17 @@
 # Git- 渣渣
 
+## 删除本地分支和远程分支
+
+https://chinese.freecodecamp.org/news/how-to-delete-a-git-branch-both-locally-and-remotely/
+
+```bash
+// 删除本地分支
+git branch -d localBranchName
+
+// 删除远程分支
+git push origin --delete remoteBranchName
+```
+
 ## git rebase和merge
 
 https://morningspace.github.io/tech/git-merge-stories-6/

@@ -1,6 +1,30 @@
 # Linux-渣渣
 
+## Ubuntu 20 打开sqllite3
 
+https://blog.csdn.net/qq_31878883/article/details/94389303
+
+
+
+ ./sqlite3: No such file or directory
+
+
+
+apt-get install lib32z1
+
+
+
+https://www.sqlite.org/cli.html
+
+## pid ppid tgid 的区别
+
+PID：流程ID
+PPID：父进程ID（启动此PID的那个）
+TGID：线程组ID
+
+tid：线程的真实pid
+
+https://blog.csdn.net/u012398613/article/details/52183708
 
 ## pstree 命令
 

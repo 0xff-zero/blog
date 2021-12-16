@@ -1,5 +1,15 @@
 # Go 基础-渣渣
 
+## Go 分布式事务
+
+https://studygolang.com/articles/35159
+
+## 反射创建对象
+
+https://studygolang.com/articles/12526
+
+https://www.yisu.com/zixun/452275.html
+
 ## 查找进程
 
 https://blog.csdn.net/a41888313/article/details/103386405

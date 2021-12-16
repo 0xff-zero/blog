@@ -129,6 +129,8 @@ Dubbo 架构分析
 
 Spring Cloud 分析
 
+JNDI
+
 ### Mysql
 
 mysql 中的binlog /redo/undo

@@ -1,5 +1,13 @@
 # Docker - 渣渣
 
+## 基础命令
+
+启动一个镜像：
+
+```shell
+docker run -d {image}:{tag} -p{hostport}:{containerport} --name {containername}
+```
+
 
 
 ## docker mysql 官方镜像的使用

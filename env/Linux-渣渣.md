@@ -1,5 +1,41 @@
 # Linux-渣渣
 
+
+
+## 后台启动服务
+
+nohup {cmd} > {logfile} 2>&1 &
+
+## 修改hostname
+
+永久性：hostnamectl set-hostname {new_hostname}
+
+暂时：hostname {new hostname}
+
+
+
+> 修改hostname需要修改相应的hosts文件
+
+## 远程复制
+
+scp [source] [target]
+
+scp {localfile} {username}@{remote_ip}:{dir}
+
+## 查看系统版本
+
+cat /proc/version
+
+## ubuntu 允许root远程登录
+
+vim /etc/ssh/sshd_config
+
+PermitRootLogin 改为yes
+
+
+
+重启ssh服务，systemctl restart ssh
+
 ## Ubuntu 20 打开sqllite3
 
 https://blog.csdn.net/qq_31878883/article/details/94389303

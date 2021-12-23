@@ -323,6 +323,8 @@ istio 体系了解
 - [简单通讯](https://razeencheng.com/post/how-to-use-grpc-in-golang-02.html)
 - [TLS加密通信和流模式](https://razeencheng.com/post/how-to-use-grpc-in-golang-03.html)
 
+为什么这么设计 https://draveness.me/whys-the-design/
+
 ### 技术前瞻
 
 RedisJson https://mp.weixin.qq.com/s/shz6J5g8yOvHv7hB8FNgVg

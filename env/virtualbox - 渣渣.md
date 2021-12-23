@@ -1,5 +1,9 @@
 # virtualbox - 渣渣
 
+## 挂载共享目录
+
+https://blog.csdn.net/skylake_/article/details/53132499
+
 ## 释放鼠标
 
 https://jingyan.baidu.com/article/851fbc37a1590c3e1f15abe4.html

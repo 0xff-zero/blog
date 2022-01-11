@@ -24,9 +24,21 @@ Nomad的job specification (jopspec 代表缩写)定义了Nomad的job 概要 （s
 
 ### task driver
 
-一个task driver代表还行一个task的基本手段和方式。Nomad提供了几种的基本内置的driver
+一个task driver代表还行一个task的基本手段和方式。Nomad提供了几种的基本内置的driver：docker，QEMU、Java 和可执行包。Nomad通过插件机制也支持三方的Driver。
+
+### task
+
+一个task 是Nomad中的最小工作单元。Task都是被Nomad中所支持的 task类型的task drviers 执行的。task 会指定需要的driver，driver的配置，常量，以及资源。
 
 
+
+### allocation
+
+allocation 是task group 和 client node之间的一个映射。一个job可能有成百上千个task group，这样的情况下，也会有相当数量的的allocation 映射到client机器。allocation 是Nomadserver在进行一个evaluation期间作为调度的一部分创建的。如果必要，一个evaluation的结果就是就是一个allocation的变更。
+
+### evaluation
+
+evaluation 是Nomad做调度决策的机制。不管是job的预期状态或者是client的真实状态的变更，nomad会创建一个evaluation 然后决定是否必须执行的动作。
 
 参考：
 

@@ -1,5 +1,10 @@
 # Linux-渣渣
 
+## ngrok安装
+https://ngrok.com/download
+## centos 更换为国内的源
+> https://blog.csdn.net/wudinaniya/article/details/105758739
+备份源：
 ## 固定ip配置
 https://cloud.tencent.com/developer/article/1721181
 https://blog.csdn.net/johnnycode/article/details/40624403

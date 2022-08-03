@@ -1,6 +1,14 @@
 # Linux-渣渣
 
+## 固定ip配置
+https://cloud.tencent.com/developer/article/1721181
+https://blog.csdn.net/johnnycode/article/details/40624403
 
+配置完成以后，可能需要禁用NetworkManager
+```
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+```
 
 ## 后台启动服务
 

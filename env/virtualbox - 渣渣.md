@@ -1,8 +1,8 @@
 # virtualbox - 渣渣
 
 ## 挂载共享目录
-
-https://blog.csdn.net/skylake_/article/details/53132499
+centos挂载：https://blog.csdn.net/skylake_/article/details/53132499
+ubuntu:https://blog.csdn.net/skylake_/article/details/53132499
 
 ## 释放鼠标
 

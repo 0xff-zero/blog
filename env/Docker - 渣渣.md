@@ -33,6 +33,18 @@ exec 可以在一个运行中的容器执行命令
 国内加速
 
 https://yeasy.gitbook.io/docker_practice/install/mirror
+在/etc/docker/daemon.json增加
+"registry-mirrors": [
+
+"https://ung2thfc.mirror.aliyuncs.com",
+
+"https://registry.docker-cn.com",
+
+"http://hub-mirror.c.163.com",
+
+"https://docker.mirrors.ustc.edu.cn"
+
+]
 
 
 

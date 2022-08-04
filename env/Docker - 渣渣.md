@@ -7,7 +7,8 @@
 ```shell
 docker run -d {image}:{tag} -p{hostport}:{containerport} --name {containername}
 ```
-
+## docker-compose 安装
+https://www.runoob.com/docker/docker-compose.html
 
 
 ## docker mysql 官方镜像的使用

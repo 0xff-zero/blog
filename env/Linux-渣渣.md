@@ -2,6 +2,8 @@
 
 ## ngrok安装
 https://ngrok.com/download
+1.下载
+sudo tar xvzf ~/Downloads/ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
 ## centos 更换为国内的源
 > https://blog.csdn.net/wudinaniya/article/details/105758739
 备份源：

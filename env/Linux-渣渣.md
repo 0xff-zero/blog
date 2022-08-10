@@ -1,5 +1,9 @@
 # Linux-渣渣
 
+## 固定ip配置
+ubuntu:
+https://blog.csdn.net/weixin_44311159/article/details/125010211
+https://www.cnblogs.com/amsilence/p/16401873.html
 ## ngrok安装
 https://ngrok.com/download
 1.下载

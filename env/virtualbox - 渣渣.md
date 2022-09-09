@@ -1,5 +1,8 @@
 # virtualbox - 渣渣
 
+## 安装win10
+https://www.jianshu.com/p/91266376d112
+
 ## 挂载共享目录
 centos挂载：https://blog.csdn.net/skylake_/article/details/53132499
 ubuntu:https://blog.csdn.net/skylake_/article/details/53132499

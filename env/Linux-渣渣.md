@@ -1,5 +1,7 @@
 # Linux-渣渣
 
+## ubuntu apt 更换国内源
+
 ## 固定ip配置
 ubuntu:
 https://blog.csdn.net/weixin_44311159/article/details/125010211
@@ -11,7 +13,7 @@ sudo tar xvzf ~/Downloads/ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
 ## centos 更换为国内的源
 > https://blog.csdn.net/wudinaniya/article/details/105758739
 备份源：
-## 固定ip配置
+### 固定ip配置
 https://cloud.tencent.com/developer/article/1721181
 https://blog.csdn.net/johnnycode/article/details/40624403
 
@@ -20,7 +22,13 @@ https://blog.csdn.net/johnnycode/article/details/40624403
 systemctl stop NetworkManager
 systemctl disable NetworkManager
 ```
+### 防火墙
+https://www.cnblogs.com/zhengdaojie/p/15546050.html
 
+### rz/sz命令
+https://www.cnblogs.com/wangdidi/p/16165357.html
+	
+yum install lrzsz
 ## 后台启动服务
 
 nohup {cmd} > {logfile} 2>&1 &

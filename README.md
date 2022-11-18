@@ -1,6 +1,7 @@
 # blog
 
 仰望星空，落地生根
+[Go 应用打包](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%BA%94%E7%94%A8%E6%89%93%E5%8C%85.md)
 
 ## 思获
 

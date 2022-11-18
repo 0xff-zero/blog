@@ -1,8 +1,12 @@
 # blog
 
 仰望星空，落地生根
+
 [Go 应用打包](https://github.com/0xff-zero/blog/blob/master/tech/golang/Go%20%E5%BA%94%E7%94%A8%E6%89%93%E5%8C%85.md)
 
+[Go应用配置解决方案-Viper](https://github.com/0xff-zero/blog/blob/master/tech/golang/viper%E7%A4%BA%E4%BE%8B.md)
+
+[Go开发Cli应用方案-Cobra](https://github.com/0xff-zero/blog/blob/master/tech/golang/cobra%E4%BB%8B%E7%BB%8D.md)
 ## 思获
 
 幂等设计详解（https://mp.weixin.qq.com/s/peYoSW4fRjgeZttKzSfhXw）

@@ -59,7 +59,12 @@ java -javaagent:valid-encrypt-1.0-SNAPSHOT-encrypted.jar="-pwd 123456" -jar vali
 ### 直接引用加密过后的包
 1. 项目中使用文件目录引用
 ![](./img/depend-encrypt.png)
-2. 不再对包进行加密
-![](./img/depend-normal-encrpyt.png)
+2. 不再对整体包进行加密
+
 3. 启动验证
+启动命令：
+```
+java -javaagent:../lib/common-lib-encrypted.jar="-pwd 123456" -jar valid-encrypt-1.0-SNAPSHOT.jar
+
+```
 ![](./img/depend-normal-startup.png)

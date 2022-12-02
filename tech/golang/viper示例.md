@@ -65,3 +65,89 @@ Viper完全支持读取环境变量。此功能属于12种应用之外的类型�
 -*-Viper在读取环境变量的时候，是大小写敏感的。-*-
 
 Viper 提供了一种机制保证读取的环境变量是唯一的。使用方法`SetEnvPrefix`可以读取指定前缀的环境变量。此时`BindEnv`和`AutomaticEnv`在使用时，前缀也会生效。
+
+
+## 反序列化为配置对象
+有三个方法可以使用
+
+- viper.UnmarshalKey
+- viper.UnmarshalExact
+- viper.Unmarshal
+
+示例中使用到配置文件
+```
+k8s:
+  master: '127.0.0.1'
+  metrics_path: "/metrics"
+  token: aaabb
+
+apollo:
+  server: aa
+  t: 1
+
+
+```
+配置对象如下：
+```
+type GConfig struct {
+	K8s *k8s   `mapstructure:"k8s"`
+	App *Applo `mapstructure:"apollo"`
+}
+type k8s struct {
+	Master      string
+	MetricsPath string `mapstructure:"metrics_path"`
+	Token       string
+}
+type Applo struct {
+	Server string
+}
+```
+### viper.UnmarshalKey
+可以对某个Key配置属性绑定到对象的时候，使用此方法；示例如下：
+```
+var k k8s
+err = v.UnmarshalKey("k8s", &k)
+
+if err != nil {
+	fmt.Println(err.Error())
+}
+var app Applo
+err = v.UnmarshalKey("apollo", &app)
+if err != nil {
+	fmt.Println(err.Error())
+}
+```
+都可以正常反序列化
+
+### viper.UnmarshalExact
+从命名上可以看出，会进行精确反序列；如果有配置匹配不到结构体会有异常返回；如下：
+```
+var app1 Applo
+err = v.UnmarshalExact(&app1)
+if err != nil {
+	fmt.Println(err.Error())
+}
+var gc1 GConfig
+err = v.UnmarshalExact(&gc1)
+if err != nil {
+	fmt.Println(err.Error())
+}
+```
+在反序列app1的时候，会提示：
+```
+1 error(s) decoding:
+
+* '' has invalid keys: t
+```
+但是在反序列化gc1的时候，完全正常
+
+### viper.Unmarshal
+方法整体和UnmarshalExact的使用方式一样，但是配置匹配不上不会有异常返回
+```
+var gc GConfig
+err = v.Unmarshal(&gc)
+if err != nil {
+	fmt.Println(err.Error())
+}
+```
+

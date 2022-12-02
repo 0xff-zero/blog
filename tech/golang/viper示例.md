@@ -151,3 +151,13 @@ if err != nil {
 }
 ```
 
+## 配置的优先级
+> https://www.jianshu.com/p/7bb4f7f69280
+
+1. 设置显示调用(explicit call to Set)
+2. 命令行标志(flag)
+3. 环境变量(env)
+4. 配置文件(config)
+5. 远程键/值存储(key/value store)
+6. 默认值(default)
+ 

@@ -1,5 +1,6 @@
 # Go 基础-渣渣
-
+## 打包
+CGO_ENABLE=0 GOARCH=amd64 GOOS=linux go build
 ## Go 分布式事务
 
 https://studygolang.com/articles/35159
